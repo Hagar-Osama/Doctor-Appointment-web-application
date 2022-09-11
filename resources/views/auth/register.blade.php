@@ -61,8 +61,8 @@
                             <div class="form-group">
                                 <select  class="form-control" name="gender">
                                     <option value="" selected disabled hidden>Select Your Gender</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
                                 </select>
                                 </span> <i class="ik ik-user"></i>
                                 @error('gender')

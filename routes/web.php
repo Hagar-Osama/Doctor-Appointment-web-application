@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
 
@@ -26,4 +27,16 @@ Route::get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+//Doctor Routes
+Route::group(['prefix' => 'doctor', 'as' => 'doctor.'], function() {
+    Route::get('/', [DoctorController::class, 'index'])->name('index');
+    Route::get('/create', [DoctorController::class, 'create'])->name('create');
+    Route::post('/store', [DoctorController::class, 'store'])->name('store');
+    Route::get('/edit/{doctorId}', [DoctorController::class, 'edit'])->name('edit');
+    Route::put('/update', [DoctorController::class, 'update'])->name('update');
+    Route::get('/destroy', [DoctorController::class, 'destroy'])->name('destroy');
+
+
+
+});
 
