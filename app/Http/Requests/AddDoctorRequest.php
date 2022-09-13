@@ -34,6 +34,7 @@ class AddDoctorRequest extends FormRequest
             'department' => 'required',
             'education' => 'required',
             'phone_number' => 'required',
+            'address'=> 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

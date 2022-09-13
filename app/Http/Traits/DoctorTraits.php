@@ -1,11 +1,14 @@
 <?php
 namespace App\Http\Traits;
 
+use App\Models\Role;
+
 trait DoctorTraits {
 
     public function getAllDoctors()
     {
-        return $this->userModel::get();
+        $roleId = Role::where('name', 'doctor')->pluck('id');
+        return $this->userModel::where('role_id', $roleId)->get();
     }
 
     public function getDoctorById($doctorId)
