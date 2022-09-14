@@ -74,7 +74,7 @@ class DoctorRepository implements DoctorInterface
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = $image->hashName();
-                $this->uploadFile($image, 'doctors/' . $request->name, $imageName, 'storage/doctors/' . $doctor->name . '/' . $doctor->image);
+                $this->uploadFile($image, 'doctors/' . $request->name, $imageName, 'storage/doctors/' . $request->name . '/' . $doctor->image);
             }
             $doctor->update([
                 'name' => $request->name,
@@ -101,12 +101,10 @@ class DoctorRepository implements DoctorInterface
     {
         $doctor = $this->getDoctorById($request->doctor_id);
         $doctor->delete();
-        if($doctor->image)
-        {
-            $this->deleteFile('storage/doctors/' . $doctor->name . '/' . $doctor->image);
+            $this->deleteFile('storage/doctors/' . $doctor->name);
             session()->flash('status', 'Doctor is Deleted Successfully');
             return redirect()->route('doctor.index');
 
-        }
+
     }
 }

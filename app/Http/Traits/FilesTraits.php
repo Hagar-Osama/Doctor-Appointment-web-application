@@ -17,7 +17,6 @@ trait FilesTraits
 
             File::delete($oldFile);
         }
-
     }
 
     public function uploadFileInS3($file, $path,  $oldFile = null)
@@ -29,10 +28,8 @@ trait FilesTraits
         $fileName = end($fileData);
 
 
-        if(!is_null($oldFile))
-        {
-            if(Storage::disk('s3')->exists($path . '/' . $oldFile))
-            {
+        if (!is_null($oldFile)) {
+            if (Storage::disk('s3')->exists($path . '/' . $oldFile)) {
                 Storage::disk('s3')->delete($path . '/' . $oldFile);
             }
         }
@@ -41,9 +38,9 @@ trait FilesTraits
 
     public function deleteFile($path)
     {
-        File::delete($path);
-
-
+        if (File::exists($path)) {
+            File::deleteDirectory($path);
+        }
     }
 
     public function deleteFileInS3($fileUrl)
