@@ -1,6 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-    window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')
+    window.jQuery || document.write('<script src="assets/src/js/vendor/jquery-3.3.1.min.js"><\/script>')
 </script>
 <script src="{{asset('assets/plugins/popper.js/dist/umd/popper.min.js')}}"></script>
 <script src="{{asset('assets/plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>

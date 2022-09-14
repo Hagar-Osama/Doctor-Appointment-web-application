@@ -76,20 +76,20 @@ class DoctorRepository implements DoctorInterface
                 $imageName = $image->hashName();
                 $this->uploadFile($image, 'doctors/' . $request->name, $imageName, 'storage/doctors/' . $doctor->name . '/' . $doctor->image);
             }
-                $doctor->update([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'role_id' => $request->role_id,
-                    'gender' => $request->gender,
-                    'address' => $request->address,
-                    'phone_number' => $request->phone_number,
-                    'department' => $request->department,
-                    'image' => isset($imageName) ? $imageName : $doctor->image,
-                    'description' => $request->description,
-                    'education' => $request->education
+            $doctor->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role_id' => $request->role_id,
+                'gender' => $request->gender,
+                'address' => $request->address,
+                'phone_number' => $request->phone_number,
+                'department' => $request->department,
+                'image' => isset($imageName) ? $imageName : $doctor->image,
+                'description' => $request->description,
+                'education' => $request->education
 
-                ]);
+            ]);
             session()->flash('status', 'Doctor is Updated Successfully');
             return redirect()->route('doctor.index');
         } catch (Exception $e) {
@@ -99,5 +99,14 @@ class DoctorRepository implements DoctorInterface
 
     public function destroy($request)
     {
+        $doctor = $this->getDoctorById($request->doctor_id);
+        $doctor->delete();
+        if($doctor->image)
+        {
+            $this->deleteFile('storage/doctors/' . $doctor->name . '/' . $doctor->image);
+            session()->flash('status', 'Doctor is Deleted Successfully');
+            return redirect()->route('doctor.index');
+
+        }
     }
 }

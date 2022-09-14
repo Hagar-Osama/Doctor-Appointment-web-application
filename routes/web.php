@@ -34,9 +34,7 @@ Route::group(['prefix' => 'doctor', 'as' => 'doctor.'], function() {
     Route::post('/store', [DoctorController::class, 'store'])->name('store');
     Route::get('/edit/{doctorId}', [DoctorController::class, 'edit'])->name('edit');
     Route::put('/update', [DoctorController::class, 'update'])->name('update');
-    Route::get('/destroy', [DoctorController::class, 'destroy'])->name('destroy');
-
-
+    Route::delete('/destroy', [DoctorController::class, 'destroy'])->name('destroy');
 
 });
 

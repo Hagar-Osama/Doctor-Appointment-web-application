@@ -83,10 +83,12 @@ Doctors List
                                         <div class="table-actions">
                                             <a href="" data-toggle="modal" data-target="#showDoctor{{$doctor->id}}"><i class="ik ik-eye"></i></a>
                                             <a href="{{route('doctor.edit',$doctor->id)}}"><i class="ik ik-edit-2"></i></a>
-                                            <a href=""><i class="ik ik-trash-2"></i></a>
+                                            <a href="" data-toggle="modal" data-target="#deleteDoctor{{$doctor->id}}"><i class="ik ik-trash-2"></i></a>
                                         </div>
                                     </td>
                                     @include('dashboard.doctors.show')
+                                    @include('dashboard.doctors.delete')
+
                                     @empty
                                     <td>
                                         <div class="text-center text-warning">
