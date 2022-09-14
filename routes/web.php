@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -20,21 +21,22 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
 
 Auth::routes();
-
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
 //Doctor Routes
-Route::group(['prefix' => 'doctor', 'as' => 'doctor.'], function() {
-    Route::get('/', [DoctorController::class, 'index'])->name('index');
-    Route::get('/create', [DoctorController::class, 'create'])->name('create');
-    Route::post('/store', [DoctorController::class, 'store'])->name('store');
-    Route::get('/edit/{doctorId}', [DoctorController::class, 'edit'])->name('edit');
-    Route::put('/update', [DoctorController::class, 'update'])->name('update');
-    Route::delete('/destroy', [DoctorController::class, 'destroy'])->name('destroy');
+Route::group(['middleware' => ['auth', 'hasRole:admin']], function () {
 
+    Route::group(['prefix' => 'doctor', 'as' => 'doctor.'], function () {
+        Route::get('/', [DoctorController::class, 'index'])->name('index');
+        Route::get('/create', [DoctorController::class, 'create'])->name('create');
+        Route::post('/store', [DoctorController::class, 'store'])->name('store');
+        Route::get('/edit/{doctorId}', [DoctorController::class, 'edit'])->name('edit');
+        Route::put('/update', [DoctorController::class, 'update'])->name('update');
+        Route::delete('/destroy', [DoctorController::class, 'destroy'])->name('destroy');
+    });
 });
-
