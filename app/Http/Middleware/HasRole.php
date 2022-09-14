@@ -20,6 +20,7 @@ class HasRole
             return $next($request);
 
         }
-        return redirect()->to('login');
+        session()->flash('message', 'Sorry! You Dont Have Access,You Cant Login');
+        return redirect()->to('loginPage');
     }
 }

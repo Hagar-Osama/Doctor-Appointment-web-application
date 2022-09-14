@@ -42,9 +42,9 @@
                         </div>
                         <h3>Sign In to ThemeKit</h3>
                         <p>Happy to see you again!</p>
-                        @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                        @if (session('message'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('message') }}
                         </div>
                         @endif
                         <form method="POST" action="{{ route('login') }}">
@@ -85,7 +85,7 @@
                             </div>
                         </form>
                         <div class="register">
-                            <p>Don't have an account? <a href="{{route('register')}}">Create an account</a></p>
+                            <p>Don't have an account? <a href="{{route('registerPage')}}">Create an account</a></p>
                         </div>
                     </div>
                 </div>

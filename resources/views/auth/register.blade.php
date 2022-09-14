@@ -106,7 +106,7 @@
                             </div>
                         </form>
                         <div class="register">
-                            <p>Already have an account? <a href="{{route('login')}}">Sign In</a></p>
+                            <p>Already have an account? <a href="{{route('loginPage')}}">Sign In</a></p>
                         </div>
                     </div>
                 </div>
