@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\HomeController;
@@ -18,13 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// });
+//Login Routes
 Route::get('/loginPage', [AuthController::class, 'loginPage'])->name('loginPage');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
@@ -33,12 +29,11 @@ Route::get('/registerPage', [AuthController::class, 'registerPage'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 
-//Doctor Routes
 Route::group(['middleware' => ['auth', 'hasRole:admin']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    //Doctor Routes
     Route::group(['prefix' => 'doctor', 'as' => 'doctor.'], function () {
         Route::get('/', [DoctorController::class, 'index'])->name('index');
         Route::get('/create', [DoctorController::class, 'create'])->name('create');
@@ -47,4 +42,16 @@ Route::group(['middleware' => ['auth', 'hasRole:admin']], function () {
         Route::put('/update', [DoctorController::class, 'update'])->name('update');
         Route::delete('/destroy', [DoctorController::class, 'destroy'])->name('destroy');
     });
+       //Appointment Routes
+       Route::group(['prefix' => 'appointment', 'as' => 'appointment.'], function () {
+        Route::get('/', [AppointmentController::class, 'index'])->name('index');
+        Route::get('/create', [AppointmentController::class, 'create'])->name('create');
+        Route::post('/store', [AppointmentController::class, 'store'])->name('store');
+        Route::get('/edit/{doctorId}', [AppointmentController::class, 'edit'])->name('edit');
+        Route::put('/update', [AppointmentController::class, 'update'])->name('update');
+        Route::delete('/destroy', [AppointmentController::class, 'destroy'])->name('destroy');
+    });
+});
+Route::group(['middleware' => ['auth', 'hasRole:doctor']], function () {
+
 });
