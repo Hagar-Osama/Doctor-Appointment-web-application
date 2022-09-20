@@ -8,9 +8,11 @@ interface AppointmentInterface {
 
     public function store($request);
 
-    public function edit($Id);
+    public function checkAppointnmentTime($request);
 
-    public function update($request);
+    public function show($appointmentId);
+
+    public function updateTime($request);
 
     public function destroy($request);
 }

@@ -13,7 +13,7 @@ class UpdateAppointmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'time.*' => 'required',
+            'appointmentId' => 'exists:appointments,id',
         ];
     }
 }

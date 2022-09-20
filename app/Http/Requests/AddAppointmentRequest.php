@@ -13,7 +13,7 @@ class AddAppointmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class AddAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'date' => 'required|unique:appointments,date,NULL,id,user_id,'.auth()->user()->id,
+            // 'status' => 'required|in:available,unavailable',
+            'time.*' => 'required',
+            'appointment_id' => 'exists:appointments,id',
         ];
     }
 }

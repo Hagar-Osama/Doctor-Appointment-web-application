@@ -9,5 +9,10 @@ class Appointment extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = ['user_id', 'date'];
+
+    public function time()
+    {
+        return $this->hasMany(Time::class, 'appointment_id');
+    }
 }

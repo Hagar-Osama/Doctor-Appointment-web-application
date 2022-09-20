@@ -24,14 +24,11 @@
                         <a href="{{route('doctor.index')}}" class="menu-item">View</a>
                     </div>
                 </div>
-                <div class="nav-lavel">UI Element</div>
                 <div class="nav-item has-sub">
-                    <a href="#"><i class="ik ik-box"></i><span>Basic</span></a>
+                    <a href="#"><i class="ik ik-box"></i><span>Appointments</span></a>
                     <div class="submenu-content">
-                        <a href="pages/ui/alerts.html" class="menu-item">Alerts</a>
-                        <a href="pages/ui/badges.html" class="menu-item">Badges</a>
-                        <a href="pages/ui/buttons.html" class="menu-item">Buttons</a>
-                        <a href="pages/ui/navigation.html" class="menu-item">Navigation</a>
+                        <a href="{{route('appointment.create')}}" class="menu-item">Create</a>
+                        <a href="{{route('appointment.index')}}" class="menu-item">View</a>
                     </div>
                 </div>
                 <div class="nav-item has-sub">

@@ -35,14 +35,20 @@ class AppointmentController extends Controller
         return $this->appointmentInterface->store($request);
     }
 
-    public function edit($Id)
+    public function checkAppointnmentTime(Request $request)
     {
-        return $this->appointmentInterface->edit($Id);
+        return $this->appointmentInterface->checkAppointnmentTime($request);
+
     }
 
-    public function update(UpdateAppointmentRequest $request)
+    public function show($appointmentId)
     {
-        return $this->appointmentInterface->update($request);
+        return $this->appointmentInterface->show($appointmentId);
+    }
+
+    public function updateTime(UpdateAppointmentRequest $request)
+    {
+        return $this->appointmentInterface->updateTime($request);
     }
 
     public function destroy(DeleteAppointmentRequest $request)

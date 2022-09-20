@@ -3,21 +3,6 @@
 Make An Appointment
 @endsection
 @section('css')
-<link rel="icon" href="{{asset('assets/favicon.ico')}}" type="image/x-icon" />
-
-<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
-
-<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/dist/css/bootstrap.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/plugins/ionicons/dist/css/ionicons.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/plugins/icon-kit/dist/css/iconkit.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}">
-<link rel="stylesheet" href="{{asset('assets/dist/css/theme.min.css')}}">
-<script src="{{asset('assets/src/js/vendor/modernizr-2.8.3.min.js')}}"></script>
-
-<link rel="stylesheet" href="{{asset('assets/plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/plugins/jquery-minicolors/jquery.minicolors.css')}}">
-<link rel="stylesheet" href="{{asset('assets/plugins/datedropper/datedropper.min.css')}}">
 <style type="text/css">
     input[type="checkbox"] {
         zoom: 1.5;
@@ -55,6 +40,16 @@ Make An Appointment
                 </div>
             </div>
         </div>
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+        @endif
+        @if (session('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+        @endif
 
         <div class="row">
             <div class="col-md-12">
@@ -62,13 +57,15 @@ Make An Appointment
                     <div class="card-header">
                         <h3>Choose A Date For Your Appointment</h3>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12 col-xl-4 mb-30">
-                                <input class="form-control" type="date" />
+                    <form method="POST" action="{{route('appointment.store')}}">
+                        @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12 col-xl-4 mb-30">
+                                    <input class="form-control" type="date" name="date" />
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -78,7 +75,7 @@ Make An Appointment
                     <div class="card-header">
                         <h3>Choose Your Appointment Time (AM)</h3>
                         <span style="margin-left: 700px;">Checked/Unchecked
-                        <input type="checkbox" onclick="for(c in document.getElementsByName('time[]'))
+                            <input type="checkbox" onclick="for(c in document.getElementsByName('time[]'))
                          document.getElementsByName('time[]').item(c).checked=this.checked">
                         </span>
                     </div>
@@ -231,12 +228,7 @@ Make An Appointment
                 </div>
             </div>
         </div>
-
+        </form>
     </div>
-    @endsection
-    @section('js')
-    <script src="{{asset('assets/plugins/jquery-minicolors/jquery.minicolors.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/datedropper/datedropper.min.js')}}"></script>
-    <script src="{{asset('assets/dist/js/theme.min.js')}}"></script>
-    <script src="{{asset('assets/js/form-picker.js')}}"></script>
-    @endsection
+</div>
+@endsection
