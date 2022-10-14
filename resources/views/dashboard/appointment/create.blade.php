@@ -74,6 +74,7 @@ Make An Appointment
                 <div class="card">
                     <div class="card-header">
                         <h3>Choose Your Appointment Time (AM)</h3>
+                         <!--checking all boxes -->
                         <span style="margin-left: 700px;">Checked/Unchecked
                             <input type="checkbox" onclick="for(c in document.getElementsByName('time[]'))
                          document.getElementsByName('time[]').item(c).checked=this.checked">

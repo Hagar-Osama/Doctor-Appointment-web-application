@@ -26,7 +26,8 @@ class AppointmentRepository implements AppointmentInterface
 
     public function index()
     {
-        return view('dashboard.appointment.index');
+        $myAppointments  = $this->appointmentModel::latest()->where('user_id', auth()->user()->id)->get();
+        return view('dashboard.appointment.index', compact('myAppointments'));
     }
 
     public function create()
@@ -94,10 +95,10 @@ class AppointmentRepository implements AppointmentInterface
         }
     }
 
-    public function destroy($request)
-    {
+    // public function destroy($request)
+    // {
 
-        session()->flash('status', 'Doctor is Deleted Successfully');
-        return redirect()->route('doctor.index');
-    }
+    //     session()->flash('status', 'Doctor is Deleted Successfully');
+    //     return redirect()->route('doctor.index');
+    // }
 }

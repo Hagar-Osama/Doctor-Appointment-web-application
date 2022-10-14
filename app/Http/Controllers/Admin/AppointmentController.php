@@ -51,8 +51,8 @@ class AppointmentController extends Controller
         return $this->appointmentInterface->updateTime($request);
     }
 
-    public function destroy(DeleteAppointmentRequest $request)
-    {
-        return $this->appointmentInterface->destroy($request);
-    }
+    // public function destroy(DeleteAppointmentRequest $request)
+    // {
+    //     return $this->appointmentInterface->destroy($request);
+    // }
 }

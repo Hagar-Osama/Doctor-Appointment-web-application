@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function(){
+    return view('welcome');
+});
+
 
 //Login Routes
 Route::get('/loginPage', [AuthController::class, 'loginPage'])->name('loginPage');

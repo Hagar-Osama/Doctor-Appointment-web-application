@@ -80,68 +80,69 @@ Make An Appointment
             <div class="col-md-12">
                 @if(Route::is('appointment.checkTime'))
                 <form method="POST" action="{{route('appointment.updateTime')}}">
-                        @csrf
-                        @method('PUT')
-                        <input type="hidden" name="appointmentId" value="{{$appointmentId}}">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Choose Your Appointment Time (AM)</h3>
-                        <span style="margin-left: 700px;">Checked/Unchecked
-                            <input type="checkbox" onclick="for(c in document.getElementsByName('time[]'))
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="appointmentId" value="{{$appointmentId}}">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Choose Your Appointment Time (AM)</h3>
+                            <!--checking all boxes -->
+                            <span style="margin-left: 700px;">Checked/Unchecked
+                                <input type="checkbox" onclick="for(c in document.getElementsByName('time[]'))
                          document.getElementsByName('time[]').item(c).checked=this.checked">
-                        </span>
-                    </div>
-                    <div class="card-body p-0 table-border-style">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td> <input type="checkbox" name="time[]" value="6am" @isset($times){{$times->contains('time', '6am') ? 'checked' : ""}} @endisset> 6am</td>
-                                        <td> <input type="checkbox" name="time[]" value="6.20am" @isset($times){{$times->contains('time', '6.20am') ? 'checked' : ""}} @endisset> 6.20am</td>
-                                        <td> <input type="checkbox" name="time[]" value="6.40am" @isset($times){{$times->contains('time', '6.40am') ? 'checked' : ""}} @endisset> 6.40am</td>
+                            </span>
+                        </div>
+                        <div class="card-body p-0 table-border-style">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td> <input type="checkbox" name="time[]" value="6am" @isset($times){{$times->contains('time', '6am') ? 'checked' : ""}} @endisset> 6am</td>
+                                            <td> <input type="checkbox" name="time[]" value="6.20am" @isset($times){{$times->contains('time', '6.20am') ? 'checked' : ""}} @endisset> 6.20am</td>
+                                            <td> <input type="checkbox" name="time[]" value="6.40am" @isset($times){{$times->contains('time', '6.40am') ? 'checked' : ""}} @endisset> 6.40am</td>
 
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td> <input type="checkbox" name="time[]" value="7am" @isset($times){{$times->contains('time', '7am') ? 'checked' : ""}} @endisset> 7am</td>
-                                        <td> <input type="checkbox" name="time[]" value="7.20am" @isset($times){{$times->contains('time', '7.20am') ? 'checked' : ""}} @endisset> 7.20am</td>
-                                        <td> <input type="checkbox" name="time[]" value="7.40am" @isset($times){{$times->contains('time', '7.40am') ? 'checked' : ""}} @endisset> 7.40am</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td> <input type="checkbox" name="time[]" value="7am" @isset($times){{$times->contains('time', '7am') ? 'checked' : ""}} @endisset> 7am</td>
+                                            <td> <input type="checkbox" name="time[]" value="7.20am" @isset($times){{$times->contains('time', '7.20am') ? 'checked' : ""}} @endisset> 7.20am</td>
+                                            <td> <input type="checkbox" name="time[]" value="7.40am" @isset($times){{$times->contains('time', '7.40am') ? 'checked' : ""}} @endisset> 7.40am</td>
 
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td> <input type="checkbox" name="time[]" value="8am" @isset($times){{$times->contains('time', '8am') ? 'checked' : ""}} @endisset> 8am</td>
-                                        <td> <input type="checkbox" name="time[]" value="8.20am" @isset($times){{$times->contains('time', '8.20am') ? 'checked' : ""}} @endisset> 8.20am</td>
-                                        <td> <input type="checkbox" name="time[]" value="8.40am" @isset($times){{$times->contains('time', '8.40am') ? 'checked' : ""}} @endisset> 8.40am</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td> <input type="checkbox" name="time[]" value="8am" @isset($times){{$times->contains('time', '8am') ? 'checked' : ""}} @endisset> 8am</td>
+                                            <td> <input type="checkbox" name="time[]" value="8.20am" @isset($times){{$times->contains('time', '8.20am') ? 'checked' : ""}} @endisset> 8.20am</td>
+                                            <td> <input type="checkbox" name="time[]" value="8.40am" @isset($times){{$times->contains('time', '8.40am') ? 'checked' : ""}} @endisset> 8.40am</td>
 
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td> <input type="checkbox" name="time[]" value="9am" @isset($times){{$times->contains('time', '9am') ? 'checked' : ""}} @endisset> 9am</td>
-                                        <td> <input type="checkbox" name="time[]" value="9.20am" @isset($times){{$times->contains('time', '9.20am') ? 'checked' : ""}} @endisset> 9.20am</td>
-                                        <td> <input type="checkbox" name="time[]" value="9.40am" @isset($times){{$times->contains('time', '9.40am') ? 'checked' : ""}} @endisset> 9.40am</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td> <input type="checkbox" name="time[]" value="9am" @isset($times){{$times->contains('time', '9am') ? 'checked' : ""}} @endisset> 9am</td>
+                                            <td> <input type="checkbox" name="time[]" value="9.20am" @isset($times){{$times->contains('time', '9.20am') ? 'checked' : ""}} @endisset> 9.20am</td>
+                                            <td> <input type="checkbox" name="time[]" value="9.40am" @isset($times){{$times->contains('time', '9.40am') ? 'checked' : ""}} @endisset> 9.40am</td>
 
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td> <input type="checkbox" name="time[]" value="10am" @isset($times){{$times->contains('time', '10am') ? 'checked' : ""}} @endisset> 10am</td>
-                                        <td> <input type="checkbox" name="time[]" value="10.20am" @isset($times){{$times->contains('time', '10.20am') ? 'checked' : ""}} @endisset> 10.20am</td>
-                                        <td> <input type="checkbox" name="time[]" value="10.40am" @isset($times){{$times->contains('time', '10.40am') ? 'checked' : ""}} @endisset> 10.40am</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td> <input type="checkbox" name="time[]" value="10am" @isset($times){{$times->contains('time', '10am') ? 'checked' : ""}} @endisset> 10am</td>
+                                            <td> <input type="checkbox" name="time[]" value="10.20am" @isset($times){{$times->contains('time', '10.20am') ? 'checked' : ""}} @endisset> 10.20am</td>
+                                            <td> <input type="checkbox" name="time[]" value="10.40am" @isset($times){{$times->contains('time', '10.40am') ? 'checked' : ""}} @endisset> 10.40am</td>
 
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td> <input type="checkbox" name="time[]" value="11am" @isset($times){{$times->contains('time', '11am') ? 'checked' : ""}} @endisset> 11am</td>
-                                        <td> <input type="checkbox" name="time[]" value="11.20am" @isset($times){{$times->contains('time', '11.20am') ? 'checked' : ""}} @endisset> 11.20am</td>
-                                        <td> <input type="checkbox" name="time[]" value="11.40am" @isset($times){{$times->contains('time', '11.40am') ? 'checked' : ""}} @endisset> 11.40am</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td> <input type="checkbox" name="time[]" value="11am" @isset($times){{$times->contains('time', '11am') ? 'checked' : ""}} @endisset> 11am</td>
+                                            <td> <input type="checkbox" name="time[]" value="11.20am" @isset($times){{$times->contains('time', '11.20am') ? 'checked' : ""}} @endisset> 11.20am</td>
+                                            <td> <input type="checkbox" name="time[]" value="11.40am" @isset($times){{$times->contains('time', '11.40am') ? 'checked' : ""}} @endisset> 11.40am</td>
 
-                                    </tr>
-                                </tbody>
-                            </table>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
 
             </div>
         </div>
@@ -241,9 +242,39 @@ Make An Appointment
             </div>
         </div>
     </div>
-</form>
+    </form>
+    @else
+    <h3>My Appointment Time List:</h3>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Check/Update Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($myAppointments as $myAppointment)
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$myAppointment->doctor->name}}</td>
+                    <td>{{$myAppointment->date}}</td>
+                    <td>
+                    <form method="POST" action="{{route('appointment.checkTime')}}">
+                        @csrf
+                        <input type="hidden" name="date" value="{{$myAppointment->date}}">
+                        <button type="submit" class="btn btn-info">Check/Update Time</button>
+                    </form>
+                    </td>
+
+                    @endforeach
+
+            </tbody>
+        </table>
+    </div>
     @endif
 </div>
 </div>
 @endsection
-

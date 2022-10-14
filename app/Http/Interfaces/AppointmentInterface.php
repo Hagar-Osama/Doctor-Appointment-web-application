@@ -14,5 +14,5 @@ interface AppointmentInterface {
 
     public function updateTime($request);
 
-    public function destroy($request);
+    // public function destroy($request);
 }
