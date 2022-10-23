@@ -14,4 +14,9 @@ class Role extends Model
     {
         return $this->hasOne(User::class, 'role_id');
     }
+
+    public function patient()
+    {
+        return $this->hasOne(User::class, 'role_id');
+    }
 }

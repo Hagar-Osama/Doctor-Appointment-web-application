@@ -56,7 +56,7 @@
                             </ul>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('endUser.register') }}">
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name" autocomplete="name">
@@ -115,7 +115,7 @@
                             </div>
                         </form>
                         <div class="register">
-                            <p>Already have an account? <a href="{{route('loginPage')}}">Sign In</a></p>
+                            <p>Already have an account? <a href="{{route('endUser.loginPage')}}">Sign In</a></p>
                         </div>
                     </div>
                 </div>

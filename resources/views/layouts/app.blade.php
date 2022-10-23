@@ -53,11 +53,11 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('loginPage') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('endUser.loginPage') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('registerPage') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('endUser.registerPage') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
@@ -67,12 +67,12 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('endUser.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('endUser.logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
@@ -88,8 +88,14 @@
         </main>
     </div>
     <script>
+        var todayDate = new Date();
         $(function() {
-            $("#datepicker").datepicker({dateFormat: "yy-mm-dd"}).val();
+            $("#datepicker").datepicker({
+                dateFormat: "yy-mm-dd",
+                showButtonPanel: true,
+                numberOfMonths: 2,
+                minDate: todayDate,
+            });
         });
     </script>
     <style type="text/css">

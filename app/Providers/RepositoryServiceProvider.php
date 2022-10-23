@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Http\EndUser\Interfaces\HomeInterface;
+use App\Http\EndUser\Interfaces\PatientInterface;
+use App\Http\EndUser\Repositories\HomeRepository;
+use App\Http\EndUser\Repositories\PatientRepository;
 use App\Http\Interfaces\AppointmentInterface;
 use App\Http\Interfaces\DoctorInterface;
 use App\Http\Repositories\AppointmentRepository;
@@ -19,6 +23,10 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(DoctorInterface::class, DoctorRepository::class);
         $this->app->bind(AppointmentInterface::class, AppointmentRepository::class);
+        $this->app->bind(HomeInterface::class, HomeRepository::class);
+        $this->app->bind(PatientInterface::class, PatientRepository::class);
+
+
 
     }
 

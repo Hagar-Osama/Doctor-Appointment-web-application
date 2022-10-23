@@ -1,55 +1,57 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\EndUser\Repositories;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
+use App\Http\EndUser\Interfaces\PatientInterface;
+use App\Models\Appointment;
+use App\Models\Patient;
 use App\Models\Role;
-use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class AuthController extends Controller
+class PatientRepository implements PatientInterface
 {
+
     private $userModel;
-    public function __construct(User $user)
+
+    public function __construct(User $patient)
     {
-        $this->userModel = $user;
-    }
-    public function registerPage()
-    {
-        return view('auth.register');
+        $this->userModel = $patient;
     }
 
-    public function register(RegisterRequest $request)
+    public function registerPage()
     {
-        $role = Role::where('name', 'admin')->first();
-        $user = $this->userModel::create([
+        return view('endUser.register');
+    }
+
+    public function register($request)
+    {
+        $role = Role::where('name', 'patient')->first();
+        $patient = $this->userModel::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => $role->id,
 
         ]);
-        Auth::login($user);
-        return redirect()->route('dashboard');
+        Auth::login($patient);
+        return redirect()->route('endUser.welcome');
     }
 
     public function loginPage()
     {
-        return view('auth.login');
+        return view('endUser.login');
     }
 
-    public function login(LoginRequest $request)
+    public function login($request)
     {
 
         $adminData = $request->only('email', 'password');
         if (auth()->attempt($adminData)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+            return redirect()->route('endUser.welcome');
         }
         return back()->withErrors([
             'email' => 'The Provided Credentials Don\'t Match Our Record',
@@ -61,6 +63,11 @@ class AuthController extends Controller
     {
         Session::flush();
         Auth::logout();
-        return redirect('loginPage');
+        return redirect()->route('endUser.welcome');
     }
+
+
+
+
+
 }
