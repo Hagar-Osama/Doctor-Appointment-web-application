@@ -13,6 +13,9 @@ interface PatientInterface {
 
     public function logout();
 
+    public function bookAppointment($request);
+
+
 
 
 }

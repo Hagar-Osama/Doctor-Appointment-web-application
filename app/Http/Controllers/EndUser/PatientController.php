@@ -5,6 +5,7 @@ namespace App\Http\Controllers\EndUser;
 use App\Http\Controllers\Controller;
 use App\Http\EndUser\Interfaces\PatientInterface;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\PatientBookingAppointmentRequest;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,12 @@ class PatientController extends Controller
     public function logout()
     {
         return $this->patientInterface->logout();
+
+    }
+
+    public function bookAppointment(PatientBookingAppointmentRequest $request)
+    {
+        return $this->patientInterface->bookAppointment($request);
 
     }
 

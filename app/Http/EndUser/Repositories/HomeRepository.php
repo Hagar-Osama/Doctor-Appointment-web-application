@@ -33,7 +33,8 @@ class HomeRepository implements HomeInterface
     {
         $appointment = $this->appointmentModel::where([['date', $date],['user_id', $doctorId]])->first();
         $times = $this->timeModel::where([['appointment_id', $appointment->id],['status', 'available']])->get();
-        return view('appointment', compact('appointment', 'times', 'date'));
+        $doctorId = $doctorId;
+        return view('appointment', compact('appointment', 'times', 'date', 'doctorId'));
 
     }
 
