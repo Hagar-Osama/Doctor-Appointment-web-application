@@ -32,6 +32,8 @@ Route::post('/logout', [PatientController::class, 'logout'])->name('logout');
 Route::get('/appointment/{doctorId}/{date}', [EndUserHomeController::class, 'makeAppointment'])->name('appointment.book');
 Route::get('/findDoctor', [EndUserHomeController::class, 'findDoctorBasedOnDate'])->name('findDoctor');
 Route::post('/book/appointment', [PatientController::class, 'bookAppointment'])->name('bookAppointment');
+Route::get('/mybookings', [PatientController::class, 'showBookings'])->name('myBookings.index');
+
 
 
 });

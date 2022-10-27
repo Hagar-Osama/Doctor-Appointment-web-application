@@ -53,5 +53,12 @@ class PatientController extends Controller
 
     }
 
+    public function showBookings()
+    {
+        return $this->patientInterface->showBookings();
+
+    }
+
+
 
 }

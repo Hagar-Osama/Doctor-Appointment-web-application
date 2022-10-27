@@ -104,4 +104,11 @@ class PatientRepository implements PatientInterface
             }
         }
     }
+
+    public function showBookings()
+    {
+        $myBookings = $this->bookingModel::where('user_id', auth()->user()->id)->latest()->get();
+        return view('myBooking', compact('myBookings'));
+
+    }
 }
