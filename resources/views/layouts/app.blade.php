@@ -51,7 +51,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @if(auth()->user()->role->name == 'patient')
+                        @if(auth()->user() && auth()->user()->hasRole('patient'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('endUser.myBookings.index') }}">{{ __('My Bookings') }}</a>
                         </li>

@@ -50,7 +50,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-8">
-                            <input type="text" class="form-control " id="datepicker" name="date">
+                            <input type="text" class="form-control " id="datepicker" name="date" autocomplete="off">
                         </div>
                         <div class="col-sm-4">
                             <button type="submit" class="btn btn-primary">Find doctors</button>
@@ -103,6 +103,8 @@
 
     </div>
 </div>
+<!--date picker component-->
+<!-- <example-component></example-component> -->
 </section>
 </div>
 
