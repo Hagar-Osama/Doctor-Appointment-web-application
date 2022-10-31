@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\EndUser\HomeController as EndUserHomeController;
 use App\Http\Controllers\EndUser\PatientController;
+use App\Http\Controllers\EndUser\ProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,22 +21,28 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::group(['prefix' => 'endUser', 'as' => 'endUser.'], function () {
-Route::get('/', [EndUserHomeController::class, 'index'])->name('welcome');
-///Registeration routes
-Route::get('/registerPage', [PatientController::class, 'registerPage'])->name('registerPage');
-Route::post('/register', [PatientController::class, 'register'])->name('register');
-//Login Routes
-Route::get('/loginPage', [PatientController::class, 'loginPage'])->name('loginPage');
-Route::post('/login', [PatientController::class, 'login'])->name('login');
-Route::post('/logout', [PatientController::class, 'logout'])->name('logout');
-Route::get('/appointment/{doctorId}/{date}', [EndUserHomeController::class, 'makeAppointment'])->name('appointment.book');
-Route::get('/findDoctor', [EndUserHomeController::class, 'findDoctorBasedOnDate'])->name('findDoctor');
-Route::post('/book/appointment', [PatientController::class, 'bookAppointment'])->name('bookAppointment');
-Route::get('/mybookings', [PatientController::class, 'showBookings'])->name('myBookings.index');
+    Route::get('/', [EndUserHomeController::class, 'index'])->name('welcome');
+    ///Registeration routes
+    Route::get('/registerPage', [PatientController::class, 'registerPage'])->name('registerPage');
+    Route::post('/register', [PatientController::class, 'register'])->name('register');
+    //Login Routes
+    Route::get('/loginPage', [PatientController::class, 'loginPage'])->name('loginPage');
+    Route::post('/login', [PatientController::class, 'login'])->name('login');
+    Route::post('/logout', [PatientController::class, 'logout'])->name('logout');
+    ///booking & appointments Routes
+    Route::get('/appointment/{doctorId}/{date}', [EndUserHomeController::class, 'makeAppointment'])->name('appointment.book');
+    Route::get('/findDoctor', [EndUserHomeController::class, 'findDoctorBasedOnDate'])->name('findDoctor');
+    Route::group(['middleware' => ['auth', 'hasRole:patient']], function () {
 
-
-
+        Route::post('/book/appointment', [PatientController::class, 'bookAppointment'])->name('bookAppointment');
+        Route::get('/mybookings', [PatientController::class, 'showBookings'])->name('myBookings.index');
+        //Profile Routes
+        Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+        Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::post('profile/update/image', [ProfileController::class, 'updateUserImage'])->name('profile.updateImage');
+    });
 });
 
 
@@ -48,7 +55,7 @@ Route::get('/registerPage', [AuthController::class, 'registerPage'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::group(['middleware' => ['auth']], function () {
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');

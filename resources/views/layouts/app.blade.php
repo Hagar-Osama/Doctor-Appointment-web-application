@@ -67,11 +67,16 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @if(auth()->check()&& auth()->user()->role->name === 'patient')
+                                <a href="{{route('endUser.profile.index')}}" class="dropdown-item" style="color: #000; font-size:16px; font-weight: bold;">Profile</a>
+                                @else
+                                <a href="{{route('endUser.welcome')}}" class="dropdown-item">Home Page</a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('endUser.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -108,7 +113,7 @@
             background: purple;
             color: white;
         }
-        </style>
+    </style>
 </body>
 
 </html>
