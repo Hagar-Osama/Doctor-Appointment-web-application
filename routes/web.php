@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\bookingListController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\EndUser\HomeController as EndUserHomeController;
 use App\Http\Controllers\EndUser\PatientController;
@@ -70,6 +71,11 @@ Route::group(['middleware' => ['auth', 'hasRole:admin']], function () {
         Route::put('/update', [DoctorController::class, 'update'])->name('update');
         Route::delete('/destroy', [DoctorController::class, 'destroy'])->name('destroy');
     });
+    //booking route
+    Route::get('/appointments', [bookingListController::class, 'index'])->name('booking.index');
+    Route::get('/all/appointments', [bookingListController::class, 'allBookedAppointments'])->name('allBookings.index');
+    Route::get('/filter/patient', [bookingListController::class, 'filterPatient'])->name('patient.filter');
+    Route::get('/update/status/{bookingId}', [bookingListController::class, 'updateStatus'])->name('updateStatus');
 });
 Route::group(['middleware' => ['auth', 'hasRole:doctor']], function () {
     // Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -17,6 +17,7 @@
                 <!-- <div class="nav-item">
                     <a href="pages/navbar.html"><i class="ik ik-menu"></i><span>Navigation</span> <span class="badge badge-success">New</span></a>
                 </div> -->
+                @if(auth()->check() && auth()->user()->hasRole('admin'))
                 <div class="nav-item has-sub">
                     <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Doctors</span></a>
                     <div class="submenu-content">
@@ -24,6 +25,8 @@
                         <a href="{{route('doctor.index')}}" class="menu-item">View</a>
                     </div>
                 </div>
+                @endif
+                @if(auth()->check() && auth()->user()->hasRole('doctor'))
                 <div class="nav-item has-sub">
                     <a href="#"><i class="ik ik-box"></i><span>Appointments</span></a>
                     <div class="submenu-content">
@@ -31,16 +34,16 @@
                         <a href="{{route('appointment.index')}}" class="menu-item">View</a>
                     </div>
                 </div>
+                @endif
+                @if(auth()->check() && auth()->user()->hasRole('admin'))
                 <div class="nav-item has-sub">
-                    <a href="#"><i class="ik ik-gitlab"></i><span>Advance</span> <span class="badge badge-success">New</span></a>
+                    <a href="#"><i class="ik ik-gitlab"></i><span>Patients</span></a>
                     <div class="submenu-content">
-                        <a href="pages/ui/modals.html" class="menu-item">Modals</a>
-                        <a href="pages/ui/notifications.html" class="menu-item">Notifications</a>
-                        <a href="pages/ui/carousel.html" class="menu-item">Slider</a>
-                        <a href="pages/ui/range-slider.html" class="menu-item">Range Slider</a>
-                        <a href="pages/ui/rating.html" class="menu-item">Rating</a>
+                        <a href="{{route('booking.index')}}" class="menu-item">Patients Appointments</a>
+                        <a href="{{route('allBookings.index')}}" class="menu-item">All Booked Appointments</a>
                     </div>
                 </div>
+                @endif
                 <div class="nav-item has-sub">
                     <a href="#"><i class="ik ik-package"></i><span>Extra</span></a>
                     <div class="submenu-content">
