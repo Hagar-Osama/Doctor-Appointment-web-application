@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\bookingListController;
 use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\PrescriptionController;
 use App\Http\Controllers\EndUser\HomeController as EndUserHomeController;
 use App\Http\Controllers\EndUser\PatientController;
 use App\Http\Controllers\EndUser\ProfileController;
@@ -87,5 +88,12 @@ Route::group(['middleware' => ['auth', 'hasRole:doctor']], function () {
         Route::post('/check', [AppointmentController::class, 'checkAppointnmentTime'])->name('checkTime');
         Route::put('/update', [AppointmentController::class, 'updateTime'])->name('updateTime');
         Route::get('/show/{appoitnmentId}', [AppointmentController::class, 'show'])->name('show');
+    });
+    //Prescriptions Route
+    Route::group(['prefix' => 'prescriptions', 'as' => 'prescriptions.'], function () {
+        Route::get('/', [PrescriptionController::class, 'index'])->name('index');
+        Route::get('/create', [PrescriptionController::class, 'create'])->name('create');
+        Route::post('/store', [PrescriptionController::class, 'store'])->name('store');
+ 
     });
 });
