@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="writePrescription" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="writePrescription{{$booking->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -35,19 +35,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputPassword4">Date</label>
-                                <input type="Date" name="date" class="form-control @error('date') is-invalid @enderror" id="exampleInputPassword4" placeholder="Date">
-                                @error('date')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="form-group">
                         <label for="exampleTextarea1">Medicine</label>
                         <textarea name="medicine" class="form-control @error('medicine') is-invalid @enderror" id="exampleTextarea1" rows="4">{{old('medicine')}}</textarea>

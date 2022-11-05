@@ -6,6 +6,7 @@ use App\Http\EndUser\Interfaces\PatientInterface;
 use App\Models\Appointment;
 use App\Models\Booking;
 use App\Models\Patient;
+use App\Models\Prescription;
 use App\Models\Role;
 use App\Models\Time;
 use App\Models\User;
@@ -21,13 +22,16 @@ class PatientRepository implements PatientInterface
     private $userModel;
     private $bookingModel;
     private $timeModel;
+    private $prescriptionModel;
 
-    public function __construct(User $patient, Booking $booking, Time $time)
+    public function __construct(User $patient, Booking $booking, Time $time, Prescription $prescription)
     {
         $this->userModel = $patient;
         $this->bookingModel = $booking;
         $this->timeModel = $time;
+        $this->prescriptionModel = $prescription;
     }
+
 
     public function registerPage()
     {
@@ -110,5 +114,11 @@ class PatientRepository implements PatientInterface
         $myBookings = $this->bookingModel::where('user_id', auth()->user()->id)->latest()->get();
         return view('myBooking', compact('myBookings'));
 
+    }
+
+    public function getAllMyPrescriptions()
+    {
+        $myPrescriptions = $this->prescriptionModel::where('user_id', auth()->user()->id)->get();
+        return view('myPrescription', compact('myPrescriptions'));
     }
 }

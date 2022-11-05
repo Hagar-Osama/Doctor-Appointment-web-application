@@ -17,6 +17,9 @@ interface PatientInterface {
 
     public function showBookings();
 
+    public function getAllMyPrescriptions();
+
+
 
 
 

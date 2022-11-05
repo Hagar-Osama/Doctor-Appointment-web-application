@@ -59,6 +59,12 @@ class PatientController extends Controller
 
     }
 
+    public function getAllMyPrescriptions()
+    {
+        return $this->patientInterface->getAllMyPrescriptions();
+
+    }
+
 
 
 }

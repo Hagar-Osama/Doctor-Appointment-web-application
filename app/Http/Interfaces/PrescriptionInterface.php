@@ -8,4 +8,10 @@ interface PrescriptionInterface {
 
     public function store($request);
 
+    public function show($userId, $date);
+
+    public function getAllPrescriptions();
+
+
+
 }

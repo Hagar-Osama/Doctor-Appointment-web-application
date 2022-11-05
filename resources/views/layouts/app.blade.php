@@ -56,6 +56,11 @@
                             <a class="nav-link" href="{{ route('endUser.myBookings.index') }}">{{ __('My Bookings') }}</a>
                         </li>
                         @endif
+                        @if(auth()->user() && auth()->user()->hasRole('patient'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('endUser.myPrescriptions.index') }}">{{ __('My Prescriptions') }}</a>
+                        </li>
+                        @endif
                         @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('endUser.loginPage') }}">{{ __('Login') }}</a>

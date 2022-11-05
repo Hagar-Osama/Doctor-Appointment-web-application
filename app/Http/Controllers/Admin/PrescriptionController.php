@@ -32,4 +32,18 @@ class PrescriptionController extends Controller
     {
         return $this->prescriptionInterface->store($request);
     }
+
+    public function show($userId, $date)
+    {
+        return $this->prescriptionInterface->show($userId, $date);
+
+    }
+
+    public function getAllPrescriptions()
+    {
+        return $this->prescriptionInterface->getAllPrescriptions();
+
+    }
+
+
 }

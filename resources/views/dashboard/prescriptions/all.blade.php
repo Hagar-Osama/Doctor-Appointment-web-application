@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Prescription List
+Bookings List
 @endsection
 @section('css')
 <link rel="icon" href="{{asset('assets/favicon.ico')}}" type="image/x-icon" />
@@ -25,8 +25,8 @@ Prescription List
                     <div class="page-header-title">
                         <i class="ik ik-inbox bg-blue"></i>
                         <div class="d-inline">
-                            <h5>All Booked Appointments</h5>
-                            <span>Booking Information({{$bookings->count()}})</span>
+                            <h5>All Prescriptions</h5>
+                            <span>Prescription Information({{$prescriptions->count()}})</span>
                         </div>
                     </div>
 
@@ -38,9 +38,9 @@ Prescription List
                                 <a href="{{route('dashboard')}}"><i class="ik ik-home"></i></a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#">Appointments</a>
+                                <a href="#">Prescriptions</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Booking Table</li>
+                            <li class="breadcrumb-item active" aria-current="page">prescriptions Table</li>
                         </ol>
                     </nav>
                 </div>
@@ -71,10 +71,8 @@ Prescription List
                         <th scope="col">Patient Email</th>
                         <th scope="col">Patient Phone</th>
                         <th scope="col">Patient Gender</th>
-                        <th scope="col">Time</th>
                         <th scope="col">Date</th>
                         <th scope="col">Created At</th>
-                        <th scope="col">Checked Up</th>
                         <th scope="col">Prescription</th>
 
 
@@ -83,39 +81,23 @@ Prescription List
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($bookings as $booking)
+                    @forelse($prescriptions as $prescription)
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
-                        <td><img src="{{asset('storage/profile'.'/'.$booking->patients->name.'/'.$booking->patients->image)}}" width="80" style="border-radius:50%"></td>
-                        <td>{{$booking->doctors->name}}</td>
-                        <td>{{$booking->patients->name}}</td>
-                        <td>{{$booking->patients->email}}</td>
-                        <td>{{$booking->patients->phone_number}}</td>
-                        <td>{{$booking->patients->gender}}</td>
-                        <td>{{$booking->time}}</td>
-                        <td>{{$booking->date}}</td>
-                        <td>{{$booking->created_at}}</td>
-                        <td>@if($booking->checkedUp == 'yes')
-                            <span class="badge bg-success">Checked</span>
-                            @else
-                            <span class="badge bg-danger">Not Checked</span>
-
-                            @endif
-                        </td>
+                        <td><img src="{{asset('storage/profile'.'/'.$prescription->patient->name.'/'.$prescription->patient->image)}}" width="80" style="border-radius:50%"></td>
+                        <td>{{$prescription->doctor->name}}</td>
+                        <td>{{$prescription->patient->name}}</td>
+                        <td>{{$prescription->patient->email}}</td>
+                        <td>{{$prescription->patient->phone_number}}</td>
+                        <td>{{$prescription->patient->gender}}</td>
+                        <td>{{$prescription->date}}</td>
+                        <td>{{$prescription->created_at}}</td>
                         <td>
-                            @if(! App\Models\Prescription::where([['date', date('Y-m-d')],['user_id', $booking->user_id], ['doctor_id', auth()->user()->id]])->exists())
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#writePrescription{{$booking->id}}">
-                                write prescription
-                            </button>
-                            @else
-                            <!-- Button trigger modal -->
-                            <a href="{{route('prescriptions.show', [$booking->user_id, $booking->date])}}" class="btn btn-info">
+                            <a href="{{route('prescriptions.show', [$prescription->user_id, $prescription->date])}}" class="btn btn-info">
                                 view prescription
                             </button>
-                            @endif
                         </td>
-                        @include('dashboard.prescriptions.prescriptionModal')
                     </tr>
                     @empty
                     <td colspan="6" class="text-danger text-center">There Is No Appointments</td>

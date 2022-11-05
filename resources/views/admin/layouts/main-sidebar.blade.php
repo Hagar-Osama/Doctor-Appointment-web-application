@@ -44,12 +44,16 @@
                     </div>
                 </div>
                 @endif
+                @if(auth()->check() && auth()->user()->hasRole('doctor'))
                 <div class="nav-item has-sub">
-                    <a href="#"><i class="ik ik-package"></i><span>Extra</span></a>
+                    <a href="#"><i class="ik ik-package"></i><span>Prescriptions</span></a>
                     <div class="submenu-content">
-                        <a href="pages/ui/session-timeout.html" class="menu-item">Session Timeout</a>
+                        <a href="{{route('prescriptions.index')}}" class="menu-item">Today Prescriptions</a>
+                        <a href="{{route('prescriptions.allPrescriptions')}}" class="menu-item">All Prescriptions</a>
+
                     </div>
                 </div>
+                @endif
                 <div class="nav-item">
                     <a href="pages/ui/icons.html"><i class="ik ik-command"></i><span>Icons</span></a>
                 </div>

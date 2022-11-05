@@ -40,6 +40,8 @@ Route::group(['prefix' => 'endUser', 'as' => 'endUser.'], function () {
 
         Route::post('/book/appointment', [PatientController::class, 'bookAppointment'])->name('bookAppointment');
         Route::get('/mybookings', [PatientController::class, 'showBookings'])->name('myBookings.index');
+        Route::get('/myPrescriptions', [PatientController::class, 'getAllMyPrescriptions'])->name('myPrescriptions.index');
+
         //Profile Routes
         Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
@@ -94,6 +96,10 @@ Route::group(['middleware' => ['auth', 'hasRole:doctor']], function () {
         Route::get('/', [PrescriptionController::class, 'index'])->name('index');
         Route::get('/create', [PrescriptionController::class, 'create'])->name('create');
         Route::post('/store', [PrescriptionController::class, 'store'])->name('store');
- 
+        Route::get('/show/{date}/{userId}', [PrescriptionController::class, 'show'])->name('show');
+        Route::get('/prescription/{all', [PrescriptionController::class, 'getAllPrescriptions'])->name('allPrescriptions');
+
+
+
     });
 });

@@ -29,7 +29,7 @@ class PrescriptionRepository implements PrescriptionInterface
     public function index()
     {
         date_default_timezone_set('Africa/Cairo');
-        $bookings = $this->bookingModel::where([['date', date('Y-m-d')],['checkedUp', 'yes']])->get();
+        $bookings = $this->bookingModel::where([['date', date('Y-m-d')],['checkedUp', 'yes'], ['doctor_id', auth()->user()->id]])->get();
         return view('dashboard.prescriptions.index', compact('bookings'));
     }
 
@@ -39,14 +39,14 @@ class PrescriptionRepository implements PrescriptionInterface
     }
 
     public function store($request)
-    {
+    { dd($request->all());
         try {
             $this->prescriptionModel::create([
                 'disease_name' => $request->disease_name,
                 'symptoms' => $request->symptoms,
                 'user_id' => $request->user_id,
                 'doctor_id' => $request->doctor_id,
-                'medicine' => $request->medicine,
+                'medicine' =>$request->medicine,
                 'how_to_use_medicine' => $request->how_to_use_medicine,
                 'feedback' => $request->feedback,
                 'signature' => $request->signature,
@@ -58,6 +58,19 @@ class PrescriptionRepository implements PrescriptionInterface
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+
+    public function show($userId, $date)
+    {
+        $prescription = $this->prescriptionModel::where([['user_id', $userId], ['date', $date]])->first();
+        return view('dashboard.prescriptions.show', compact('prescription'));
+    }
+
+    public function getAllPrescriptions()
+    {
+        $prescriptions = $this->prescriptionModel::get();
+        return view('dashboard.prescriptions.all', compact('prescriptions'));
+
     }
 
 
