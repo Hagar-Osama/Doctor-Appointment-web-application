@@ -47,9 +47,10 @@ class AuthController extends Controller
     {
 
         $adminData = $request->only('email', 'password');
-        if (auth()->attempt($adminData)) {
+        if (auth()->attempt($adminData) && ! auth()->user()->hasRole('patient')) {
             $request->session()->regenerate();
             return redirect()->route('dashboard');
+
         }
         return back()->withErrors([
             'email' => 'The Provided Credentials Don\'t Match Our Record',

@@ -14,7 +14,6 @@ Prescription List
 <link rel="stylesheet" href="{{asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}">
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/dist/css/theme.min.css')}}">
-<script src="{{asset('assets/src/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 @endsection
 @section('content')
 <div class="main-content">
