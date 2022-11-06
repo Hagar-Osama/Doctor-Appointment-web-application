@@ -10,10 +10,12 @@ use App\Http\EndUser\Repositories\PatientRepository;
 use App\Http\EndUser\Repositories\ProfileRepository;
 use App\Http\Interfaces\AppointmentInterface;
 use App\Http\Interfaces\BookingListInterface;
+use App\Http\Interfaces\DepartmentInterface;
 use App\Http\Interfaces\DoctorInterface;
 use App\Http\Interfaces\PrescriptionInterface;
 use App\Http\Repositories\AppointmentRepository;
 use App\Http\Repositories\BookingListRepository;
+use App\Http\Repositories\DepartmentRepository;
 use App\Http\Repositories\DoctorRepository;
 use App\Http\Repositories\PrescriptionRepository;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +36,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ProfileInterface::class, ProfileRepository::class);
         $this->app->bind(BookingListInterface::class, BookingListRepository::class);
         $this->app->bind(PrescriptionInterface::class, PrescriptionRepository::class);
+        $this->app->bind(DepartmentInterface::class, DepartmentRepository::class);
+
 
 
 

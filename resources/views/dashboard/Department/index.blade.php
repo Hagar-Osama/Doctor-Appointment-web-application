@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Doctors List
+Departments List
 @endsection
 @section('css')
 <link rel="icon" href="{{asset('assets/favicon.ico')}}" type="image/x-icon" />
@@ -25,8 +25,8 @@ Doctors List
                     <div class="page-header-title">
                         <i class="ik ik-inbox bg-blue"></i>
                         <div class="d-inline">
-                            <h5>All Doctor</h5>
-                            <span>Doctor Information</span>
+                            <h5>All Departments</h5>
+                            <span>Department Information</span>
                         </div>
                     </div>
                 </div>
@@ -37,14 +37,24 @@ Doctors List
                                 <a href="{{route('dashboard')}}"><i class="ik ik-home"></i></a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#">Doctors</a>
+                                <a href="#">Department</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Doctor Table</li>
+                            <li class="breadcrumb-item active" aria-current="page">Department Table</li>
                         </ol>
                     </nav>
+                    @include('dashboard.department.create')
                 </div>
             </div>
         </div>
+        @if ($errors->any())
+        <div class="alert alert-danger mt-4">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         @if (session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
@@ -55,44 +65,37 @@ Doctors List
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Doctor Table</h3>
+                        <h3>Department Table</h3>
+                        <a href="" data-toggle="modal" class="btn btn-info mx-5" data-target="#addDepartment">Add Department</a>
                     </div>
                     <div class="card-body">
                         <table id="data_table" class="table col-12">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th class="nosort">Avatar</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Address</th>
+                                    <th>Department Name</th>
                                     <th class="nosort">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($doctors as $doctor)
+                                @forelse($departments as $department)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td><img src="{{asset('storage/doctors/'.$doctor->name.'/'.$doctor->image)}}" class="table-user-thumb" alt="{{$doctor->name}}"></td>
-                                    <td>{{$doctor->name}}</td>
-                                    <td>{{$doctor->email}}</td>
-                                    <td>{{$doctor->phone_number}}</td>
-                                    <td>{{$doctor->address}}</td>
+                                    <td>{{$department->department}}</td>
+
                                     <td>
                                         <div class="table-actions">
-                                            <a href="" data-toggle="modal" data-target="#showDoctor{{$doctor->id}}"><i class="ik ik-eye"></i></a>
-                                            <a href="{{route('doctor.edit',$doctor->id)}}"><i class="ik ik-edit-2"></i></a>
-                                            <a href="" data-toggle="modal" data-target="#deleteDoctor{{$doctor->id}}"><i class="ik ik-trash-2"></i></a>
+                                            <a href="" data-toggle="modal" data-target="#editDepartment{{$department->id}}"><i class="ik ik-edit-2"></i></a>
+                                            <a href="" data-toggle="modal" data-target="#deleteDepartment{{$department->id}}"><i class="ik ik-trash-2"></i></a>
                                         </div>
                                     </td>
-                                    @include('dashboard.doctors.show')
-                                    @include('dashboard.doctors.delete')
+                                    @include('dashboard.department.edit')
+                                    @include('dashboard.department.delete')
 
                                     @empty
                                     <td>
                                         <div class="text-center text-warning">
-                                            <span>No Doctors found</span>
+                                            <span>No Departments found</span>
                                         </div>
                                     </td>
                                     @endforelse

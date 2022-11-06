@@ -3,8 +3,10 @@
 namespace App\Http\Repositories;
 
 use App\Http\Interfaces\DoctorInterface;
+use App\Http\Traits\DepartmentTraits;
 use App\Http\Traits\DoctorTraits;
 use App\Http\Traits\FilesTraits;
+use App\Models\Department;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,11 +17,15 @@ class DoctorRepository implements DoctorInterface
 
     use DoctorTraits;
     use FilesTraits;
+    use DepartmentTraits;
     private $userModel;
+    private $depModel;
 
-    public function __construct(User $user)
+    public function __construct(User $user, Department $department)
     {
         $this->userModel = $user;
+        $this->depModel = $department;
+
     }
 
     public function index()
@@ -30,7 +36,8 @@ class DoctorRepository implements DoctorInterface
 
     public function create()
     {
-        return view('dashboard.doctors.create');
+        $departments = $this->getAllDepartments();
+        return view('dashboard.doctors.create', compact('departments'));
     }
 
     public function store($request)
@@ -63,7 +70,8 @@ class DoctorRepository implements DoctorInterface
     public function edit($doctor_id)
     {
         $doctor = $this->getDoctorById($doctor_id);
-        return view('dashboard.doctors.edit', compact('doctor'));
+        $departments = $this->getAllDepartments();
+        return view('dashboard.doctors.edit', compact('doctor', 'departments'));
     }
 
     public function update($request)

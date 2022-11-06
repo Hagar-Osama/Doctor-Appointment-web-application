@@ -14,6 +14,16 @@ Prescription List
 <link rel="stylesheet" href="{{asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}">
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/dist/css/theme.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/select2/dist/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/summernote/dist/summernote-bs4.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/mohithg-switchery/dist/switchery.min.css')}}">
+<script src="{{asset('assets/src/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+
 @endsection
 @section('content')
 <div class="main-content">
@@ -111,8 +121,8 @@ Prescription List
                             <!-- Button trigger modal -->
                             <a href="{{route('prescriptions.show', [$booking->user_id, $booking->date])}}" class="btn btn-info">
                                 view prescription
-                            </button>
-                            @endif
+                                </button>
+                                @endif
                         </td>
                         @include('dashboard.prescriptions.prescriptionModal')
                     </tr>
@@ -124,4 +134,11 @@ Prescription List
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script src="{{asset('assets/plugins/summernote/dist/summernote-bs4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery.repeater/jquery.repeater.min.js')}}"></script>
+<script src="{{asset('assets/plugins/mohithg-switchery/dist/switchery.min.js')}}"></script>
+<script src="{{asset('assets/js/form-advanced.js')}}"></script>
 @endsection

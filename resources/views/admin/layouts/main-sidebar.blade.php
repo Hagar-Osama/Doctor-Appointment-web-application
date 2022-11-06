@@ -26,6 +26,14 @@
                     </div>
                 </div>
                 @endif
+                @if(auth()->check() && auth()->user()->hasRole('admin'))
+                <div class="nav-item has-sub">
+                    <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Department</span></a>
+                    <div class="submenu-content">
+                        <a href="{{route('department.index')}}" class="menu-item">View</a>
+                    </div>
+                </div>
+                @endif
                 @if(auth()->check() && auth()->user()->hasRole('doctor'))
                 <div class="nav-item has-sub">
                     <a href="#"><i class="ik ik-box"></i><span>Appointments</span></a>

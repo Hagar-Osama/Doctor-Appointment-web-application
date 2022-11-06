@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\bookingListController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\PrescriptionController;
 use App\Http\Controllers\EndUser\HomeController as EndUserHomeController;
@@ -73,6 +74,13 @@ Route::group(['middleware' => ['auth', 'hasRole:admin']], function () {
         Route::get('/edit/{doctorId}', [DoctorController::class, 'edit'])->name('edit');
         Route::put('/update', [DoctorController::class, 'update'])->name('update');
         Route::delete('/destroy', [DoctorController::class, 'destroy'])->name('destroy');
+    });
+     //Department Routes
+     Route::group(['prefix' => 'department', 'as' => 'department.'], function () {
+        Route::get('/', [DepartmentController::class, 'index'])->name('index');
+        Route::post('/store', [DepartmentController::class, 'store'])->name('store');
+        Route::put('/update', [DepartmentController::class, 'update'])->name('update');
+        Route::delete('/destroy', [DepartmentController::class, 'destroy'])->name('destroy');
     });
     //booking route
     Route::get('/appointments', [bookingListController::class, 'index'])->name('booking.index');

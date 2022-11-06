@@ -148,51 +148,55 @@ Add A Doctor
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputName1">Department</label>
-                                    <input type="text" name="department" value="{{old('department')}}" class="form-control @error('department') is-invalid @enderror" id="exampleInputName1" placeholder="Doctor specialist">
-
+                                    <label for="">Department</label>
+                                    <select class="form-control select2">
+                                        <option value="disabled hidden">Choose A Department</option>
+                                        @foreach($departments as $department)
+                                        <option value="{{$department->department}}">{{$department->department}}</option>
+                                        @endforeach
+                                    </select>
                                     @error('department')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label>File upload</label>
-                                    <input type="file" name="image" class="file-upload-default">
-                                    <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control @error('image') is-invalid @enderror file-upload-info" placeholder="Upload Image">
-                                        <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                        </span>
-                                        @error('image')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleTextarea1">Textarea</label>
-                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="exampleTextarea1" rows="4">{{old('description')}}</textarea>
-                                    @error('description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
-                            </form>
+                        <div class="form-group">
+                            <label>File upload</label>
+                            <input type="file" name="image" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control @error('image') is-invalid @enderror file-upload-info" placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Textarea</label>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="exampleTextarea1" rows="4">{{old('description')}}</textarea>
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @endsection
-    @section('js')
-  
-    <script src="{{asset('assets/js/form-components.js')}}"></script>
+</div>
+@endsection
+@section('js')
 
-    @endsection
+<script src="{{asset('assets/js/form-components.js')}}"></script>
+
+@endsection

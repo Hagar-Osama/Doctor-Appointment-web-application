@@ -44,6 +44,21 @@
                         </span>
                         @enderror
                     </div>
+                    <!-- <div class="card-body">
+                        <p>Click the add button to repeat the form</p>
+                        <form class="form-inline repeater">
+                            <div data-repeater-list="group-a">
+                                <div data-repeater-item class="d-flex mb-2">
+                                    <label class="sr-only" for="inlineFormInputGroup1">Users</label>
+                                    <div class="form-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input type="text" class="form-control" placeholder="Name">
+                                    </div>
+                                    <button data-repeater-delete type="button" class="btn btn-danger btn-icon ml-2"><i class="ik ik-trash-2"></i></button>
+                                </div>
+                            </div>
+                            <button data-repeater-create type="button" class="btn btn-success btn-icon ml-2 mb-2"><i class="ik ik-plus"></i></button>
+                        </form>
+                    </div> -->
                     <div class="form-group">
                         <label for="exampleTextarea1">How To Use Medicine</label>
                         <textarea name="how_to_use_medicine" class="form-control @error('how_to_use_medicine') is-invalid @enderror" id="exampleTextarea1" rows="4">{{old('how_to_use_medicine')}}</textarea>
@@ -79,3 +94,4 @@
             </div>
         </div>
     </div>
+

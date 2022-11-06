@@ -50,10 +50,10 @@ Edit A Doctor
                             <h3>Register Doctor Information</h3>
                         </div>
                         @if (session('error'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('error') }}
-                    </div>
-                    @endif
+                        <div class="alert alert-success" role="alert">
+                            {{ session('error') }}
+                        </div>
+                        @endif
                         <div class="card-body">
                             <form class="forms-sample" method="post" action="{{route('doctor.update')}}" enctype="multipart/form-data">
                                 @csrf
@@ -73,11 +73,11 @@ Edit A Doctor
                                         <div class="form-group">
                                             <label for="exampleInputEmail3">Email address</label>
                                             <input type="email" name="email" value="{{$doctor->email}}" class="form-control  @error('email') is-invalid @enderror" id="exampleInputEmail3" placeholder="Email">
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -152,8 +152,13 @@ Edit A Doctor
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputName1">Department</label>
-                                    <input type="text" name="department" value="{{$doctor->department}}" class="form-control  @error('department') is-invalid @enderror" id="exampleInputName1" placeholder="Doctor specialist">
+                                    <label for="">Department</label>
+                                    <select class="form-control select2">
+                                        <option value="disabled hidden">Choose A Department</option>
+                                        @foreach($departments as $department)
+                                        <option value="{{$department->id}}"{{$doctor->department == $department->department ? 'selected' : ''}}>{{$department->department}}</option>
+                                        @endforeach
+                                    </select>
                                     @error('department')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
